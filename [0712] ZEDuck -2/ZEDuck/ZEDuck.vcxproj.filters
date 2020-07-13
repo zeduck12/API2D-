@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\98.Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\99.Default">
+      <UniqueIdentifier>{22470258-6384-46ab-9525-1a1b371df346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00.MainProcess">
+      <UniqueIdentifier>{c20c7fe0-d36b-43e9-8889-2a37412eb83b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.MainApp">
+      <UniqueIdentifier>{c88ecb2f-899e-459f-b8b2-7b5199781875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj">
+      <UniqueIdentifier>{f8b624c8-cf33-4237-ac90-c0bcca6f7cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\020.Player">
+      <UniqueIdentifier>{1c8e39a9-9124-4043-848d-11f1c5a43130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\021.Monster">
+      <UniqueIdentifier>{150fbc58-2539-49fc-9a7a-c3f60ef8f71f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\022.Bullet">
+      <UniqueIdentifier>{24b1120a-3762-45b3-bc93-54bd0f332e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\023.GunBarrel">
+      <UniqueIdentifier>{5bfe7018-91bf-45b8-9592-68db777e7075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\024.Shield">
+      <UniqueIdentifier>{bd98f3b5-c137-4d8a-9d5c-7841189eb8c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\025.Line">
+      <UniqueIdentifier>{c5554d2c-fd6b-477a-aa92-ce62e753ab37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager">
+      <UniqueIdentifier>{d5c22cf6-88b0-403b-ba9e-9806f56eddff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\026.Ground">
+      <UniqueIdentifier>{45a4811a-fbd8-463c-ac28-9995d184d17e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\021.Monster\AttackPattern">
+      <UniqueIdentifier>{a032d486-12f1-410f-ada2-5b6b134c6b04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\021.Monster\StatePattern">
+      <UniqueIdentifier>{08bb8e47-b3e1-4da5-9d4a-98ea32e674cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\021.Monster\Boss">
+      <UniqueIdentifier>{2dc5a532-0cee-4f8e-935d-9fdfa1a39190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\022.Bullet\Meteor">
+      <UniqueIdentifier>{46b2b12b-84b0-4663-a21c-860a6baf9991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\022.Bullet\Wave">
+      <UniqueIdentifier>{af1bedec-d166-4942-8f49-f90181414c1b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Define.h">
+      <Filter>소스 파일\98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ZEDuck.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>소스 파일\98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern.h">
+      <Filter>소스 파일\98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>소스 파일\98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Const.h">
+      <Filter>소스 파일\98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>소스 파일\98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameScene.h">
+      <Filter>소스 파일\01.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="CObj.h">
+      <Filter>소스 파일\02.Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>소스 파일\02.Obj\020.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>소스 파일\02.Obj\021.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CGunBarrel.h">
+      <Filter>소스 파일\02.Obj\023.GunBarrel</Filter>
+    </ClInclude>
+    <ClInclude Include="CSubBullet.h">
+      <Filter>소스 파일\02.Obj\022.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CShield.h">
+      <Filter>소스 파일\02.Obj\024.Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="CLine.h">
+      <Filter>소스 파일\02.Obj\025.Line</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineManager.h">
+      <Filter>소스 파일\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundManager.h">
+      <Filter>소스 파일\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CGround.h">
+      <Filter>소스 파일\02.Obj\026.Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="CAttackPattern.h">
+      <Filter>소스 파일\02.Obj\021.Monster\AttackPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss.h">
+      <Filter>소스 파일\02.Obj\021.Monster\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossState.h">
+      <Filter>소스 파일\02.Obj\021.Monster\StatePattern</Filter>
+    </ClInclude>
+    <ClInclude Include="CMeteor.h">
+      <Filter>소스 파일\02.Obj\022.Bullet\Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeManager.h">
+      <Filter>소스 파일\03.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet.h">
+      <Filter>소스 파일\02.Obj\022.Bullet\Wave</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Function.cpp">
+      <Filter>소스 파일\98.Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="ZEDuck.cpp">
+      <Filter>소스 파일\00.MainProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameScene.cpp">
+      <Filter>소스 파일\01.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.cpp">
+      <Filter>소스 파일\02.Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>소스 파일\02.Obj\020.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>소스 파일\02.Obj\021.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CGunBarrel.cpp">
+      <Filter>소스 파일\02.Obj\023.GunBarrel</Filter>
+    </ClCompile>
+    <ClCompile Include="CSubBullet.cpp">
+      <Filter>소스 파일\02.Obj\022.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CShield.cpp">
+      <Filter>소스 파일\02.Obj\024.Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>소스 파일\02.Obj\025.Line</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineManager.cpp">
+      <Filter>소스 파일\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundManager.cpp">
+      <Filter>소스 파일\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGround.cpp">
+      <Filter>소스 파일\02.Obj\026.Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="CAttackPattern.cpp">
+      <Filter>소스 파일\02.Obj\021.Monster\AttackPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss.cpp">
+      <Filter>소스 파일\02.Obj\021.Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossState.cpp">
+      <Filter>소스 파일\02.Obj\021.Monster\StatePattern</Filter>
+    </ClCompile>
+    <ClCompile Include="CMeteor.cpp">
+      <Filter>소스 파일\02.Obj\022.Bullet\Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeManager.cpp">
+      <Filter>소스 파일\03.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet.cpp">
+      <Filter>소스 파일\02.Obj\022.Bullet\Wave</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ZEDuck.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="ZEDuck.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
