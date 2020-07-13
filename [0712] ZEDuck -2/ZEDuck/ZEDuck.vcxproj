@@ -153,11 +153,14 @@
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="Const.h" />
+    <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CResourcesManager.h" />
     <ClInclude Include="CShield.h" />
     <ClInclude Include="CSubBullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enum.h" />
@@ -183,11 +186,14 @@
     <ClCompile Include="CMeteor.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CResourcesManager.cpp" />
     <ClCompile Include="CShield.cpp" />
     <ClCompile Include="CSubBullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="ZEDuck.cpp" />

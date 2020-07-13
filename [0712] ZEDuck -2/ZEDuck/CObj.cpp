@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "CObj.h"
+#include "CTexture.h"
+#include "CResourcesManager.h"
 
 CObj::CObj(CGameScene& _rGameScene)
 	:
@@ -47,4 +49,25 @@ void CObj::MoveTo(float _fDeltaX, float _fDeltaY)
 {
 	m_fX += _fDeltaX;
 	m_fY += _fDeltaY;
+}
+
+void CObj::SetTexture(CTexture* pTexture)
+{
+	if (m_pTexture)
+	{
+		m_pTexture = nullptr;
+		m_pTexture = pTexture;
+	}
+}
+
+void CObj::SetTexture(const string& strkey, const wchar_t* pFileName, const string& strPathKey)
+{
+	if (pFileName)
+	{
+		if (m_pTexture)
+			m_pTexture = nullptr;
+
+		m_pTexture = CResourcesManager::Get_Instance()->LoadTexture(
+			strkey, pFileName, strPathKey);
+	}
 }

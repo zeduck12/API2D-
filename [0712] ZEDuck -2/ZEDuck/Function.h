@@ -36,4 +36,5 @@ bool IsCollided(const CObj* _pObj1, const CObj* _pObj2, RECT& _rCollidedPoint);
 float GetDistance(const CObj* _CObj1, const CObj* _CObj2);
 
 // IntersectRect -> 직접 구현하기.
+bool IntersectRect(RECT& rc1, RECT& rc2);
 bool MyIntersectRect(LPRECT lpRect, const RECT* _pRect1, const RECT* _pRect2);

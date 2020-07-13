@@ -58,7 +58,7 @@ void CPlayer::LateUpdate(void)
 		m_fGravity = 0.f;
 		m_fJumpPower = 0.f;
 		m_iJumpCount = 0;
-		m_fY = WINCY - 100.f -25.f; // -25.f 지면 위에다 플레이어 놓기 위해서 해준거.
+		m_fY = WINCY - 100.f - 25.f; // -25.f 지면 위에다 플레이어 놓기 위해서 해준거.
 	}
 }
 
@@ -124,8 +124,6 @@ void CPlayer::InputKeyState()
 		}
 
 		m_iJumpCount++;
-
-		//m_fY -= m_fSpeed;
 	}
 
 	// 공격하기
@@ -141,6 +139,14 @@ void CPlayer::ActiveGravity()
 	m_fY -= sinf(TO_RADIAN(m_fJumpAngle)) * m_fJumpPower;
 	m_fY += m_fGravity;
 	m_fGravity += GRAVITY;
+}
+
+void CPlayer::ResetPlayerVariable(void)
+{
+	eState = PLAYER::IDLE;
+	m_fGravity = 0.f;
+	m_fJumpPower = 0.f;
+	m_iJumpCount = 0;
 }
 
 // 플레이어 기준으로 일점범위 내에 몬스터가 있는지 체크하는 함수,

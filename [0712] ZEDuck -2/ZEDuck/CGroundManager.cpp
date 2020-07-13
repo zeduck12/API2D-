@@ -4,8 +4,9 @@
 
 // 스태틱변수 초기화
 CGroundManager* CGroundManager::m_pInstance = nullptr;
-
 CGroundManager::CGroundManager()
+	:
+	m_pGameScene(nullptr)
 {
 }
 
@@ -14,18 +15,12 @@ CGroundManager::~CGroundManager()
 	Release_GroundManager();
 }
 
-void CGroundManager::Ready_GroundManager()
+bool CGroundManager::Ready_GroundManager(CGameScene& _rGameScene)
 {
-	//oldTime = GetTickCount();
-	//CGround* pGround = nullptr;
-	//for (size_t i = 0; i < 5; i++)
-	//{
-	//	// 그라운드를 생성하고 위치를 넣어준다,.
-	//	// 중심과 크기
-	//	pGround = new CGround(GROUND_INFO(1100.f + (i* 600), 500.f, 500, 100));
-	//	m_listGound.emplace_back(pGround);
-	//}
+	m_pGameScene = &_rGameScene;
+	SpawnGround(); // 여기서 그라운 생성해주기.
 
+	return true;
 }
 
 void CGroundManager::Update_GroundManager()
@@ -55,13 +50,16 @@ void CGroundManager::Render_GroundManager(const HDC& _hdc)
 
 void CGroundManager::Release_GroundManager()
 {
+	m_pGameScene = nullptr;
 	for_each(m_listGound.begin(), m_listGound.end(), DeleteSafe<CGround*>);
 }
 
 void CGroundManager::SpawnGround()
 {
+	// 여기서 생성될 그라운드들 목록 채워주기.
+
 	CGround* pGround = nullptr;
-	pGround = new CGround(GROUND_INFO(1100.f, 500.f, 500, 100));
+	pGround = new CGround(*m_pGameScene, GROUND_INFO(1100.f, 500.f, 500, 100));
 	m_listGound.emplace_back(pGround);
 }
 

@@ -8,6 +8,8 @@
 #include "CGroundManager.h"
 #include "CBoss.h"
 #include "CTimeManager.h"
+#include "CPathManager.h"
+#include "CResourcesManager.h"
 
 CGameScene::CGameScene()
 {
@@ -21,10 +23,15 @@ CGameScene::~CGameScene()
 void CGameScene::Init(void)
 {
 	oldTime = GetTickCount();
+	srand(static_cast<unsigned int>(time(nullptr)));	// 랜덤값을 생성하기 위한 시드 전달.
 
 	m_hDC = GetDC(g_hWND);
-	// 랜덤값을 생성하기 위한 시드 전달.
-	srand(static_cast<unsigned int>(time(nullptr)));
+	if (!CResourcesManager::Get_Instance()->Init(g_hInst, m_hDC))
+		return;
+	if (!CPathManager::Get_Instance()->Init())
+		return;
+	if (!CGroundManager::Get_Instance()->Ready_GroundManager(*this))
+		return;
 
 	// 플레이어 생성
 	if (!m_pPlayer)
@@ -114,6 +121,9 @@ void CGameScene::Release(void)
 	DeleteListSafe(m_listMeteors);
 	DeleteListSafe(m_listMonsters);
 
+	CPathManager::Destroy_Instance();
+	CResourcesManager::Destroy_Instance();
+	CGroundManager::Destroy_Instance();
 	ReleaseDC(g_hWND, m_hDC);
 
 }

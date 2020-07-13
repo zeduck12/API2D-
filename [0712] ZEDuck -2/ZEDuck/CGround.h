@@ -31,13 +31,14 @@ typedef struct tagGroundInfo
 }GROUND_INFO;
 
 class CGround 
+    : public CObj
 {
 public:
-    CGround(const GROUND_INFO& _rInfo);
+    CGround(CGameScene& _rGameScene, const GROUND_INFO& _rInfo);
     ~CGround();
 
 public:
-    void Ready(void) ;
+    void Ready() ;
     int Update(float _fDeltaTime = 0.f) ;
     void LateUpdate(void) ;
     void Render(const HDC& _hdc) ;
@@ -45,8 +46,6 @@ public:
 
 private:
     GROUND_INFO m_tInfo;
-
-    // 땅은 일정한 시간에 맞게 등장하고 움직임.
     float m_fSpeed;
 
 };

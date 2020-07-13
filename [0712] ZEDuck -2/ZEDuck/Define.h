@@ -5,17 +5,12 @@
 #define WINCX 1000
 #define WINCY 1000
 
+// 파일 경로
+#define ROOT_PATH "RootPath"
+#define TEXTURE_PATH "TexturePath"
+
 // 중력 상수
 #define GRAVITY 2.f/*2.5f*/
-
-// 키 입력 관련
-#define NOT_PRESS_(_Key)			(GetAsyncKeyState(_Key) & 0x0000)
-#define JUST_RELEASE_(_Key)			(GetAsyncKeyState(_Key) & 0x0001)
-#define JUST_PRESS_(_Key)			(GetAsyncKeyState(_Key) & 0x8000)
-#define KEEP_PRESSING_(_Key)		(GetAsyncKeyState(_Key) & 0x8001)
-
-// 타이머 관련
-#define WORLD_TIMER	CGameWorldTimer::Instance()
 
 // 오브젝트 유효성 체크
 #define IS_VALID_OBJ(_pObj)				((_pObj) && (_pObj->IsValid()))
@@ -53,6 +48,3 @@
 #define F_READ_DATA(_valueName, _fpIn)		fread(&(_valueName), sizeof(_valueName), 1, _fpIn)
 #define F_WRITE_HEAD(_valueName, _fpOut)	fwrite(&(_valueName), sizeof(_valueName), 1, _fpOut)
 #define F_READ_HEAD(_valueName, _fpIn)		fread(&(_valueName), sizeof(_valueName), 1, _fpIn)
-
-//배경음
-#define SOUND_FILE_NAME "..\\SaveFile\\배경음악.wav"

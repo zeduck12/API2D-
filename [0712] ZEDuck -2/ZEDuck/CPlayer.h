@@ -18,14 +18,15 @@ public:
     virtual void Release(void) override;
 
 public:
-    void Attack();
+    void Attack(void);
     bool CheckAttackRange(CObj* pObj); // 공격범위안에 몬스터가 들어왔는지 true라면 어택함수에서 몬스터에게 데미지
-    void InputKeyState();
-    void ActiveGravity();
+    void InputKeyState(void);
+    void ActiveGravity(void);
+    void ResetPlayerVariable(void);
 
 public:
-    float GetDamage() const { return m_fDamage; }
-    size_t GetLifeNum() const { return m_iLifeNum; }
+    float GetDamage(void) const { return m_fDamage; }
+    size_t GetLifeNum(void) const { return m_iLifeNum; }
     void   SetLifeNum(size_t _iLifeNum) { m_iLifeNum = _iLifeNum; }
 
 private:

@@ -43,6 +43,17 @@ float GetDistance(const CObj* _CObj1, const CObj* _CObj2)
 	return fDistance;
 }
 
+bool IntersectRect(RECT& rc1, RECT& rc2)
+{
+	if (rc1.left < rc2.right &&
+		rc1.top < rc2.bottom &&
+		rc1.right > rc2.left &&
+		rc1.bottom > rc2.top) {
+		return true;
+	}
+	else return false;
+}
+
 bool MyIntersectRect(LPRECT lpRect, const RECT* _pRect1, const RECT* _pRect2)
 {
 	if (_pRect1->left > _pRect2->right) return false;

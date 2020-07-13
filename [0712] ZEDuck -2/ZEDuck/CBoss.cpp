@@ -14,6 +14,11 @@ CBoss::CBoss(CGameScene& _rGameScene, float _fX, float _fY, size_t _iWidth, size
 	m_fMaxHp = m_fHp;
 	m_fSpeed = cfMonsterSpeed;
 
+	// 이미지
+	m_iWidth = 256;
+	m_iHeight = 256;
+	SetTexture("Boss", L"fly.bmp");
+
 	// 상태 초기화
 	m_eCurState = JumpState::Get_Instance();
 	m_eCurState->OnLoaded(this);
@@ -61,7 +66,9 @@ void CBoss::LateUpdate(void)
 
 void CBoss::Render(const HDC& _hdc)
 {
-	CObj::Render(_hdc);
+	//CObj::Render(_hdc);
+	if (m_pTexture)
+		BitBlt(_hdc, m_fX - (m_iWidth >> 1), m_fY - (m_iWidth >> 1), m_iWidth, m_iHeight, m_pTexture->GetDC(), 0, 0, SRCCOPY);
 
 	if (m_eState == MONSTER::ATTACK)
 	{

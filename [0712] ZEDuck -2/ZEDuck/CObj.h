@@ -1,7 +1,7 @@
 #pragma once
+#include "CTexture.h"
 
 class CGameScene;
-
 class CObj abstract
 {
 public:
@@ -50,12 +50,13 @@ public:
 	size_t GetHeight(void) const { return m_iHeight; }
 	void SetValid(bool _bIsValid) { m_bIsValid = _bIsValid; }
 	bool IsValid(void) const { return m_bIsValid; }
-	/*void SetActive(bool _bIsActive) { m_bIsActive = _bIsActive; }
-	bool IsActive(void) { return m_bIsActive; }*/
 
+	// 텍스쳐 셋팅 함수.
+public:
+	void SetTexture(class CTexture* pTexture);
+	void SetTexture(const string& strkey, const wchar_t* pFileName = NULL, const string& strPathKey = TEXTURE_PATH);
 
 protected:
-	/*bool m_bIsActive;*/
 	bool m_bIsValid;
 	float m_fX;
 	float m_fY;
@@ -63,6 +64,7 @@ protected:
 	float m_fDegree;
 	size_t m_iWidth;
 	size_t m_iHeight;
+	CTexture* m_pTexture;
 	BOOL(__stdcall* m_pDrawFunc) (HDC hdc, int _left, int _right, int _top, int _bottom);
 
 private:
