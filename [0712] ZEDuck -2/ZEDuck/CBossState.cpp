@@ -238,11 +238,11 @@ void JumpState::OnLoaded(CBoss* _pBoss)
 void JumpState::Update(CBoss* _pBoss, float _fDeltaTime)
 {
 	// 두번 점프가 끝.
-	if (_pBoss->GetJumpCount() == 3)
+	if (_pBoss->GetJumpCount() >= 3)
 	{
-		_pBoss->SetIsJump(false); 
 		_pBoss->SetGravity(0.f);
-		_pBoss->ReSetJumpCount();
+		_pBoss->SetIsJump(false); 
+		_pBoss->ReSetJumpCount(); // 점프 카운트 초기화 않해주면 계속뜀.
 		return;
 	}
 
@@ -250,9 +250,5 @@ void JumpState::Update(CBoss* _pBoss, float _fDeltaTime)
 	if (m_fJumpAccumulateTime > m_fJumpCoolTime)
 		m_fJumpAccumulateTime = 0.f;
 	else
-	{
-		//이떄 점프
-		_pBoss->SetIsJump(true);
-		_pBoss->ActiveGravity();
-	}
+		_pBoss->SetIsJump(true); //이떄 점프
 }

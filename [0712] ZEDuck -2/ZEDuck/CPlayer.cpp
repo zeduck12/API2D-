@@ -51,23 +51,14 @@ int CPlayer::Update(float _fDeltaTime)
 void CPlayer::LateUpdate(void)
 {
 	// 나중에 몬스터가 던지는 투사체들 플레이어가 피격데미지 입는거등등 처리..
-
-	if (m_fY > WINCY - 100.f - 25.f)
-	{
-		eState = PLAYER::IDLE;
-		m_fGravity = 0.f;
-		m_fJumpPower = 0.f;
-		m_iJumpCount = 0;
-		m_fY = WINCY - 100.f - 25.f; // -25.f 지면 위에다 플레이어 놓기 위해서 해준거.
-	}
 }
 
 void CPlayer::Render(const HDC& _hdc)
 {
 	//CObj::Render(_hdc);
 	// 플레이어 기준으로 움직이게 구현하기.
-	Rectangle(_hdc, GetLeft() + (m_fX- oldPoint.x), GetTop() + (m_fY- oldPoint.y),
-		GetRight() + (m_fX-oldPoint.x), GetBottom() + (m_fY-oldPoint.y));
+	Rectangle(_hdc, GetLeft() + (m_fX - oldPoint.x), GetTop() + (m_fY - oldPoint.y),
+		GetRight() + (m_fX - oldPoint.x), GetBottom() + (m_fY - oldPoint.y));
 
 	if (eState == PLAYER::ATTACK)
 	{
@@ -109,6 +100,9 @@ void CPlayer::InputKeyState()
 
 	if (GetAsyncKeyState(VK_UP) & 0x0001)
 	{
+		if (m_bIsCollideCelling == true)
+			return;
+
 		if (m_iJumpCount == 2)
 			return;
 		else if (m_iJumpCount == 1)
@@ -127,7 +121,7 @@ void CPlayer::InputKeyState()
 	}
 
 	// 공격하기
-	if (GetAsyncKeyState('A') & 0x8000)
+	if (GetAsyncKeyState('A') & 0x0001)
 	{
 		eState = PLAYER::ATTACK;
 		Attack();
@@ -136,9 +130,10 @@ void CPlayer::InputKeyState()
 
 void CPlayer::ActiveGravity()
 {
-	m_fY -= sinf(TO_RADIAN(m_fJumpAngle)) * m_fJumpPower;
 	m_fY += m_fGravity;
 	m_fGravity += GRAVITY;
+
+	m_fY -= sinf(TO_RADIAN(m_fJumpAngle)) * m_fJumpPower;
 }
 
 void CPlayer::ResetPlayerVariable(void)

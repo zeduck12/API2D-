@@ -17,7 +17,7 @@ CBoss::CBoss(CGameScene& _rGameScene, float _fX, float _fY, size_t _iWidth, size
 	// 이미지
 	m_iWidth = 256;
 	m_iHeight = 256;
-	SetTexture("Boss", L"fly.bmp");
+	//SetTexture("Boss", L"fly.bmp");
 
 	// 상태 초기화
 	m_eCurState = JumpState::Get_Instance();
@@ -45,30 +45,21 @@ CBoss::~CBoss()
 
 int CBoss::Update(float _fDeltaTime)
 {
-	//ActiveGravity();
+	// 중력은 항상받게.
 	m_eCurState->Update(this, _fDeltaTime);
+	ActiveGravity();
 	return 0;
 }
 
 void CBoss::LateUpdate(void)
 {
-	// 중력체크
-	if (m_fY > WINCY - 100.f - 25.f)
-	{
-		if (m_bIsJump == true) // 점프상태일때만 점프카운트 체크.
-			m_iJumpCount++;
-
-		m_fGravity = 0.f;
-		m_fY = WINCY - 100.f - 25.f; // -25.f 지면 위에다 보스 놓기 위해서 해준거.
-	}
-
 }
 
 void CBoss::Render(const HDC& _hdc)
 {
-	//CObj::Render(_hdc);
-	if (m_pTexture)
-		BitBlt(_hdc, m_fX - (m_iWidth >> 1), m_fY - (m_iWidth >> 1), m_iWidth, m_iHeight, m_pTexture->GetDC(), 0, 0, SRCCOPY);
+	CObj::Render(_hdc);
+	//if (m_pTexture)
+	//	BitBlt(_hdc, m_fX - (m_iWidth >> 1), m_fY - (m_iWidth >> 1), m_iWidth, m_iHeight, m_pTexture->GetDC(), 0, 0, SRCCOPY);
 
 	if (m_eState == MONSTER::ATTACK)
 	{
@@ -88,13 +79,19 @@ void CBoss::Release(void)
 
 void CBoss::ActiveGravity(void)
 {
+	m_fGravity += /*GRAVITY*/ 0.2f;
+	m_fY += m_fGravity;
+
+	if (m_bIsJump == false)
+		return;
+
 	CPlayer* pPlayer = TO_PLAYER(this->GetGameScene().GetPlayer());
 	DO_IF_IS_VALID_OBJ(pPlayer)
 	{
 		if (pPlayer->GetX() > this->GetX())
-			m_fSpeed = 4.0f;
+			m_fSpeed = 2.0f;
 		else if (pPlayer->GetX() < this->GetX())
-			m_fSpeed = -4.0f;
+			m_fSpeed = -2.0f;
 		else
 			m_fSpeed = 0.f;
 	}
@@ -102,8 +99,6 @@ void CBoss::ActiveGravity(void)
 	m_fY -= sinf(TO_RADIAN(40.f)) * 10.f;
 	m_fX += m_fSpeed;
 
-	m_fGravity += /*GRAVITY*/ 0.2f;
-	m_fY += m_fGravity;
 }
 
 bool CBoss::CheckAttackRange(void)

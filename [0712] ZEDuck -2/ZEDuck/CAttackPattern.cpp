@@ -77,7 +77,7 @@ void CAttackPattern::Release(void)
 
 void CAttackPattern::Jump()
 {
-	m_fJumpPower = 40.f;
+	m_fJumpPower = 20.f;
 	m_fJumpAngle = 40.f;
 	m_pOwner->SetY(m_pOwner->GetY() - m_fJumpPower);
 }
@@ -245,6 +245,9 @@ void CAttackPattern::StartCrawlPattern(void)
 // 달려오는 패턴의 몬스터 스피드 4.5 적당
 void CAttackPattern::StartRunPattern(void)
 {
+	if (DetectPlayer() == false)
+		return;
+
 	if (TO_MONSTER(m_pOwner)->GetIsKnockBack() == true)
 	{
 		m_iAttackTimeDelay++;
@@ -278,7 +281,7 @@ void CAttackPattern::StartRunPattern(void)
 			if (m_fVec != 0)
 			{		
 				float fDst = sqrtf(m_fVec * m_fVec);
-				m_pOwner->SetX(m_pOwner->GetX() + m_fSpeed * m_fVec / fDst);
+				m_pOwner->SetX(m_pOwner->GetX() + /*m_fSpeed*/5.f * m_fVec / fDst);
 			}
 
 		}
@@ -288,6 +291,9 @@ void CAttackPattern::StartRunPattern(void)
 // 스피드 4,5
 void CAttackPattern::StartJumpPattern(void)
 {
+	if (DetectPlayer() == false)
+		return;
+
 	if (TO_MONSTER(m_pOwner)->GetIsKnockBack() == true)
 	{
 		m_iAttackTimeDelay++;

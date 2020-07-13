@@ -43,7 +43,7 @@ public:
     void LateUpdate(void) ;
     void Render(const HDC& _hdc) ;
     void Release(void) ;
-
+  
 private:
     GROUND_INFO m_tInfo;
     float m_fSpeed;

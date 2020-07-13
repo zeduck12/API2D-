@@ -27,9 +27,10 @@ public: // State
     void SetState(CBossState* _pState);
 
 public: // Get & Set
+    int GetJumpCount(void) const { return m_iJumpCount; }
+    void SetJumpCount(int _iJumpCount) { m_iJumpCount = _iJumpCount; }
     bool GetIsJump(void) const { return m_bIsJump; }
     void SetIsJump(bool _bIsJump) { m_bIsJump = _bIsJump; }
-    int GetJumpCount(void) const { return m_iJumpCount; }
     float GetHp(void) const { return m_fHp; }
     float GetMaxHp(void) const { return m_fMaxHp; }
     size_t GetAttackedCount() const{ return m_iAttackedCount; }

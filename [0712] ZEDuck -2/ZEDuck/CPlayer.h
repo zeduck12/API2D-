@@ -25,9 +25,12 @@ public:
     void ResetPlayerVariable(void);
 
 public:
-    float GetDamage(void) const { return m_fDamage; }
+    float  GetDamage(void) const { return m_fDamage; }
     size_t GetLifeNum(void) const { return m_iLifeNum; }
     void   SetLifeNum(size_t _iLifeNum) { m_iLifeNum = _iLifeNum; }
+    void   SetGravity(float _fGravity) { m_fGravity = _fGravity; }
+    bool   GetIsCollideCelling() const { return m_bIsCollideCelling; }
+    void   SetIsCollideCelling(bool _bIsCollideCelling) { m_bIsCollideCelling = _bIsCollideCelling; }
 
 private:
     size_t m_iLifeNum = 5;
@@ -39,6 +42,7 @@ private:
     float m_fJumpAngle = 40.f;
     float m_fJumpPower = 40.f;
     float m_fGravity = 0.f;
+    bool m_bIsCollideCelling = false;
 
 private:
     POINT oldPoint;

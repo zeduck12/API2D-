@@ -36,7 +36,7 @@ void CGameScene::Init(void)
 	// 플레이어 생성
 	if (!m_pPlayer)
 	{
-		m_pPlayer = new CPlayer(*this, WINCX >> 1, WINCY - 100.f);
+		m_pPlayer = new CPlayer(*this,/* WINCX >> 1*/100.f,/* WINCY - 100.f*/ 100.f);
 		m_pPlayer->Ready();
 	}
 	// 보스생성
@@ -48,28 +48,28 @@ void CGameScene::Init(void)
 	// 시작시간.
 	m_iStartTime = int(CTimeManager::Get_Instance()->GetWorldTime() * 1000);
 
-	// 몬스터 생성
-	//CObj* pMonster = nullptr;
-	//for (int i = 0; i < 5; i++) 
-	//{
-	//	pMonster = new CMonster( *this);
-	//	pMonster->Ready();
-	//	// 몬스터 리스트에 추가
-	//	m_listMonsters.emplace_back(pMonster);
-	//}
+	CObj* pMonster = new CMonster(*this, 500.f, 1400.f, ciMonsterSize, ciMonsterSize, cfMonsterHp, MONSTER::CRAWL);
+	pMonster->Ready();
+	m_listMonsters.emplace_back(pMonster);
 
-	//CObj* pMonster = new CMonster(*this, 600.f, WINCY - 500.f, ciMonsterSize, ciMonsterSize, cfMonsterHp, MONSTER::JUNIOR_BOSS);
-	//pMonster->Ready();
-	//m_listMonsters.emplace_back(pMonster);
+	pMonster = new CMonster(*this, 1000.f, 1250.f, ciMonsterSize, ciMonsterSize, cfMonsterHp, MONSTER::CRUSH);
+	pMonster->Ready();
+	m_listMonsters.emplace_back(pMonster);
+
+	pMonster = new CMonster(*this, 1750.f, 1250.f, ciMonsterSize, ciMonsterSize, cfMonsterHp, MONSTER::JUMP);
+	pMonster->Ready();
+	m_listMonsters.emplace_back(pMonster);
 
 }
 
 void CGameScene::Update(void)
 {
+	// 현재 델타타임 쓰지 않고 있는 중.
 	float fDeltaTime = 0.f;
 	fDeltaTime =  GetTickCount() - oldTime ;
 	oldTime = GetTickCount();
 
+	CGroundManager::Get_Instance()->Update_GroundManager();
 	for (auto& pBullet : m_listBullets) { pBullet->Update(); }
 	for (auto& pMeteor : m_listMeteors) { pMeteor->Update(); }
 	for (auto& pMonster : m_listMonsters) { pMonster->Update(); }
@@ -79,6 +79,7 @@ void CGameScene::Update(void)
 
 void CGameScene::LateUpdate(void)
 {
+	CGroundManager::Get_Instance()->LateUpdate_GroundManager();
 	for (auto& pBullet : m_listBullets) { DO_IF_IS_VALID_OBJ(pBullet) { pBullet->LateUpdate(); } }
 	for (auto& pMeteor : m_listMeteors) { DO_IF_IS_VALID_OBJ(pMeteor) { pMeteor->LateUpdate(); } }
 	for (auto& pMonster : m_listMonsters) { DO_IF_IS_VALID_OBJ(pMonster) { pMonster->LateUpdate(); } }
@@ -102,10 +103,10 @@ void CGameScene::Render(void)
 		SetGraphicsMode(m_hDC, GM_ADVANCED);
 		SetWorldTransform(m_hDC, &xf);
 	}
-
 	ClearWindowVer2();
-	ShowStageWindow();
+	//ShowStageWindow();
 	
+	CGroundManager::Get_Instance()->Render_GroundManager(m_hDC);
 	for (auto& pMonster : m_listMonsters) { pMonster->Render(m_hDC); }
 	for (auto& pBullet : m_listBullets) { pBullet->Render(m_hDC); }
 	for (auto& pMeteor : m_listMeteors) { pMeteor->Render(m_hDC); }

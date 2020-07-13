@@ -10,7 +10,7 @@
 #define TEXTURE_PATH "TexturePath"
 
 // 중력 상수
-#define GRAVITY 2.f/*2.5f*/
+#define GRAVITY 1.2f/*2.5f*/
 
 // 오브젝트 유효성 체크
 #define IS_VALID_OBJ(_pObj)				((_pObj) && (_pObj->IsValid()))
@@ -18,6 +18,7 @@
 #define DO_IF_IS_VALID_OBJ(_pObj)		if(IS_VALID_OBJ(_pObj))
 
 // 형 변환 관련
+#define TO_BOSS(_pObj)			dynamic_cast<CBoss*>(_pObj)
 #define TO_PLAYER(_pObj)		dynamic_cast<CPlayer*>(_pObj)
 #define TO_BULLET(_pObj)		dynamic_cast<CBullet*>(_pObj)
 #define TO_SUBBULLET(_pObj)		dynamic_cast<CSubBullet*>(_pObj)

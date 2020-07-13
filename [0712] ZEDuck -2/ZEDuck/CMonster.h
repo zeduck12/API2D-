@@ -23,6 +23,7 @@ public:
 
 public:
 
+    void SetGravity(float _fGravity) { m_fGravity = _fGravity; }
     float GetHp(void) const { return m_fHp; }
     float GetMaxHp(void) const { return m_fMaxHp; }
     void SetDirection(void);

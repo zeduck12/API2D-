@@ -15,6 +15,7 @@ public:
 	void Release(void);
 public:
 	CObj* GetPlayer(void) const { return m_pPlayer; }
+	CObj* GetBoss(void) const { return m_pBoss; }
 	list<CObj*>& GetMonsters(void) { return m_listMonsters; }
 	list<CObj*>& GetBullets(void) { return m_listBullets; }
 

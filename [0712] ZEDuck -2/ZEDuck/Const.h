@@ -29,7 +29,7 @@ const size_t ciMonsterSize = 50;
 const float cfMonsterSpeed = 1.5f;
 const float cfMonsterHp = 1000.f;
 const float cfMonsterAttackRange = 100.f; // 50 점프
-const float cfMonsterDetectRange = /*400.f*/ 350.f;
+const float cfMonsterDetectRange = /*400.f*/ 400.f;
 
 // 몬스터 총알 상수
 const float cfMonsterBulletSpeed = 2.f;
