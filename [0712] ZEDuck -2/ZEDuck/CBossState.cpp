@@ -248,10 +248,7 @@ void JumpState::Update(CBoss* _pBoss, float _fDeltaTime)
 
 	m_fJumpAccumulateTime += CTimeManager::Get_Instance()->GetElapsedTime();
 	if (m_fJumpAccumulateTime > m_fJumpCoolTime)
-	{
 		m_fJumpAccumulateTime = 0.f;
-
-	}
 	else
 	{
 		//ÀÌ‹š Á¡ÇÁ

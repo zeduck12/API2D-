@@ -61,7 +61,6 @@ void CMonster::LateUpdate(void)
 		m_fY = WINCY - 100.f - 25.f; // -25.f 지면 위에다 플레이어 놓기 위해서 해준거.
 	}
 
-
 	// 현재 몬스터가 죽었는지 체크.
 	if (IsDied())
 		SetValid(false);

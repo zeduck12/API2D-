@@ -64,6 +64,15 @@
     <Filter Include="소스 파일\02.Obj\022.Bullet\Wave">
       <UniqueIdentifier>{af1bedec-d166-4942-8f49-f90181414c1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03.Manager\01.GroundManager">
+      <UniqueIdentifier>{e41e2937-f987-4133-af60-6d5299a7e6b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\02.LineManager">
+      <UniqueIdentifier>{21f2a1f1-e465-45e0-8ec9-3adc76a6f8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\03.TimeManager">
+      <UniqueIdentifier>{ef61af4e-9760-4bb6-a030-48678c1b7c64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -120,12 +129,6 @@
     <ClInclude Include="CLine.h">
       <Filter>소스 파일\02.Obj\025.Line</Filter>
     </ClInclude>
-    <ClInclude Include="CLineManager.h">
-      <Filter>소스 파일\03.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CGroundManager.h">
-      <Filter>소스 파일\03.Manager</Filter>
-    </ClInclude>
     <ClInclude Include="CGround.h">
       <Filter>소스 파일\02.Obj\026.Ground</Filter>
     </ClInclude>
@@ -141,11 +144,17 @@
     <ClInclude Include="CMeteor.h">
       <Filter>소스 파일\02.Obj\022.Bullet\Meteor</Filter>
     </ClInclude>
-    <ClInclude Include="CTimeManager.h">
-      <Filter>소스 파일\03.Manager</Filter>
-    </ClInclude>
     <ClInclude Include="CBullet.h">
       <Filter>소스 파일\02.Obj\022.Bullet\Wave</Filter>
+    </ClInclude>
+    <ClInclude Include="CGroundManager.h">
+      <Filter>소스 파일\03.Manager\01.GroundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineManager.h">
+      <Filter>소스 파일\03.Manager\02.LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeManager.h">
+      <Filter>소스 파일\03.Manager\03.TimeManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,12 +188,6 @@
     <ClCompile Include="CLine.cpp">
       <Filter>소스 파일\02.Obj\025.Line</Filter>
     </ClCompile>
-    <ClCompile Include="CLineManager.cpp">
-      <Filter>소스 파일\03.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CGroundManager.cpp">
-      <Filter>소스 파일\03.Manager</Filter>
-    </ClCompile>
     <ClCompile Include="CGround.cpp">
       <Filter>소스 파일\02.Obj\026.Ground</Filter>
     </ClCompile>
@@ -200,11 +203,17 @@
     <ClCompile Include="CMeteor.cpp">
       <Filter>소스 파일\02.Obj\022.Bullet\Meteor</Filter>
     </ClCompile>
-    <ClCompile Include="CTimeManager.cpp">
-      <Filter>소스 파일\03.Manager</Filter>
-    </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>소스 파일\02.Obj\022.Bullet\Wave</Filter>
+    </ClCompile>
+    <ClCompile Include="CGroundManager.cpp">
+      <Filter>소스 파일\03.Manager\01.GroundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineManager.cpp">
+      <Filter>소스 파일\03.Manager\02.LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeManager.cpp">
+      <Filter>소스 파일\03.Manager\03.TimeManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
