@@ -1,5 +1,23 @@
 #pragma once
 
+// À§Ä¡ÁÂÇ¥
+typedef struct tagPosition
+{
+	tagPosition()
+	{
+		ZeroMemory(this, sizeof(tagPosition));
+	}
+
+	tagPosition(float _fX, float _fY)
+		:
+		m_fX(_fX), m_fY(_fY)
+	{ }
+
+	float m_fX;
+	float m_fY;
+
+}POSITION;
+
 // ¼±ÀÇ ÁÂÇ¥
 typedef struct tagLinePoint
 {

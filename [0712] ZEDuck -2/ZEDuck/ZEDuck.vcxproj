@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAttackPattern.h" />
     <ClInclude Include="CBitmapManager.h" />
     <ClInclude Include="CBoss.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="ZEDuck.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAttackPattern.cpp" />
     <ClCompile Include="CBitmapManager.cpp" />
     <ClCompile Include="CBoss.cpp" />

@@ -1,6 +1,7 @@
 #pragma once
 #include "CTexture.h"
 
+class CAnimation;
 class CGameScene;
 class CObj abstract
 {
@@ -55,6 +56,12 @@ public:
 public:
 	void SetTexture(class CTexture* pTexture);
 	void SetTexture(const string& strkey, const wchar_t* pFileName = NULL, const string& strPathKey = TEXTURE_PATH);
+	CAnimation* CreateAnimation(const string& _strTag);
+	bool AddAnimationClip(const string& strName, ANIMATION::TYPE eType,
+		ANIMATION::OPTION eOption, float fAnimationLimitTime,
+		int iFrameMaxX, int iFrameMaxY, int iStartX, int iStartY,
+		int iLengthX, int iLengthY, float fOptionLimitTime,
+		const string& strTextKey, const TCHAR* pFilePath);
 
 protected:
 	bool m_bIsValid;
@@ -64,7 +71,8 @@ protected:
 	float m_fDegree;
 	size_t m_iWidth;
 	size_t m_iHeight;
-	CTexture* m_pTexture;
+	CTexture* m_pTexture = nullptr;
+	CAnimation* m_pAnimation = nullptr;
 	BOOL(__stdcall* m_pDrawFunc) (HDC hdc, int _left, int _right, int _top, int _bottom);
 
 private:

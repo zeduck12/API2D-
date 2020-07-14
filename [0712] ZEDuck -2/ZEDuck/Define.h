@@ -10,7 +10,7 @@
 #define TEXTURE_PATH "TexturePath"
 
 // 중력 상수
-#define GRAVITY 1.2f/*2.5f*/
+#define GRAVITY 1.0f/*2.5f*/
 
 // 오브젝트 유효성 체크
 #define IS_VALID_OBJ(_pObj)				((_pObj) && (_pObj->IsValid()))

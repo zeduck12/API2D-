@@ -2,6 +2,7 @@
 #include "CObj.h"
 #include "CTexture.h"
 #include "CResourcesManager.h"
+#include "CAnimation.h"
 
 CObj::CObj(CGameScene& _rGameScene)
 	:
@@ -70,4 +71,35 @@ void CObj::SetTexture(const string& strkey, const wchar_t* pFileName, const stri
 		m_pTexture = CResourcesManager::Get_Instance()->LoadTexture(
 			strkey, pFileName, strPathKey);
 	}
+}
+
+CAnimation* CObj::CreateAnimation(const string& _strTag)
+{
+	if (m_pAnimation)
+	{
+		delete m_pAnimation;
+		m_pAnimation = nullptr;
+	}
+
+	m_pAnimation = new CAnimation;
+
+	m_pAnimation->SetTag(_strTag);
+	m_pAnimation->SetOwner(this);
+	if (!m_pAnimation->Init())
+		return nullptr;
+
+	return nullptr;
+}
+
+bool CObj::AddAnimationClip(const string& strName, ANIMATION::TYPE eType, ANIMATION::OPTION eOption,
+	float fAnimationLimitTime, int iFrameMaxX, int iFrameMaxY, int iStartX, int iStartY,
+	int iLengthX, int iLengthY, float fOptionLimitTime, const string& strTextKey, const TCHAR* pFilePath)
+{
+	if (!m_pAnimation)
+		return false;
+
+	m_pAnimation->AddClip(strName,eType, eOption, fAnimationLimitTime, iFrameMaxX, iFrameMaxY,
+		iStartX, iStartY, iLengthX, iLengthY, fOptionLimitTime, strTextKey, pFilePath);
+
+	return true;
 }

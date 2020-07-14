@@ -5,6 +5,8 @@
 #include "CGunBarrel.h"
 #include "CShield.h"
 #include "CMonster.h"
+#include "CBitmapManager.h"
+#include "CAnimation.h"
 
 CPlayer::CPlayer(CGameScene& _rGameScene)
 	:
@@ -27,7 +29,21 @@ CPlayer::~CPlayer()
 
 void CPlayer::Ready(void)
 {
+	CBitmapManager::Get_Instance()->Insert_Texture_BmpMgr(L"Texture\\Test.bmp", L"Player");
 	
+	//CAnimation* pAni = CreateAnimation("PlayerAnimation");
+	//AddAnimationClip("Idle", ANIMATION::ATLAS, ANIMATION::LOOP, 1.f, 2, 8 ,0,0, 2, 8 , 0.f, "PlayerIdle", L"Texture\\Test_Idle.bmp");
+	// if(pAni) {pAni->Release; pAni = nullptr;}
+	//// Render 부분에
+	//if (m_pAnimation)
+	//{
+	//	ANIMATION_CLIP* pClip = m_pAnimation->GetCurrentClip();
+	//}
+	//// update 부분에
+	//if (m_pAnimation)
+	//{
+	//	m_pAnimation->Update(/*deltaTime*/);
+	//}
 }
 
 int CPlayer::Update(float _fDeltaTime)
@@ -55,7 +71,17 @@ void CPlayer::LateUpdate(void)
 void CPlayer::Render(const HDC& _hdc)
 {
 	//CObj::Render(_hdc);
-	Rectangle(_hdc, GetLeft(), GetTop(), GetRight(), GetBottom());
+	HDC hMemDC = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"Player");
+	if (nullptr == hMemDC)
+		return;
+
+	GdiTransparentBlt(_hdc, GetLeft(),GetTop(),
+		GetWidth(),GetHeight(),
+		hMemDC,
+		0, 0,
+		GetWidth(),GetHeight(),
+		RGB(255, 255, 255));
+	//Rectangle(_hdc, GetLeft(), GetTop(), GetRight(), GetBottom());
 
 	if (eState == PLAYER::ATTACK)
 	{

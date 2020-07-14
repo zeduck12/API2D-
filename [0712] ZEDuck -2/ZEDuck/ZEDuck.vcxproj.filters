@@ -88,6 +88,9 @@
     <Filter Include="소스 파일\97.Manager\07.BitmapManager">
       <UniqueIdentifier>{3c97d508-528b-4624-ae9a-716eee21eafe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05.Animation">
+      <UniqueIdentifier>{824282d3-49a8-4b09-b805-2ce3b4a1c22d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -186,6 +189,9 @@
     <ClInclude Include="CBitmapManager.h">
       <Filter>소스 파일\97.Manager\07.BitmapManager</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>소스 파일\05.Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Function.cpp">
@@ -259,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="CBitmapManager.cpp">
       <Filter>소스 파일\97.Manager\07.BitmapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>소스 파일\05.Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

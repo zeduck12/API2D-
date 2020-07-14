@@ -6,7 +6,7 @@ const float cfDeltaX[OBJ::DIR_END] = { -1.f, 1.f, 0.f, 0.f };
 const float cfDeltaY[OBJ::DIR_END] = { 0.f, 0.f, -1.f, 1.f };
 
 // 플레이어 상수
-const size_t ciPlayerSize = 50;
+const size_t ciPlayerSize = 80;
 const float cfPlayerSpeed = 5.f;
 const size_t ciPlayerMaxPower = 5;
 const size_t ciPlayerMinPower = 1;

@@ -27,7 +27,7 @@ CGameScene::~CGameScene()
 void CGameScene::Init(void)
 {
 	m_hDC = GetDC(g_hWND);
-	CBitmapManager::Get_Instance()->Insert_Texture_BmpMgr(L"Texture\\Background.bmp", L"BackGround");
+	CBitmapManager::Get_Instance()->Insert_Texture_BmpMgr(L"Texture\\mapBMP.bmp", L"mapBMP");
 	CBitmapManager::Get_Instance()->Insert_Texture_BmpMgr(L"Texture\\BackBuffer.bmp", L"BackBuffer");
 	HDC hBack = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"BackBuffer");
 	SetGraphicsMode(hBack, GM_ADVANCED);
@@ -104,25 +104,40 @@ void CGameScene::Render(void)
 	HDC hBack = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"BackBuffer");
 	if (nullptr == hBack)
 		return;
-	HDC hMemDC = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"BackGround");
-	if (nullptr == hMemDC)
-		return;
+
+	// 백그라운드
+	//HDC hMemDC = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"mapBMP");
+	//if (nullptr == hMemDC)
+	//	return;
 
 	RECT rc{ 0,0, WINCX, WINCY };
 	FillRect(hBack, &rc, (HBRUSH)GetStockObject(WHITE_BRUSH));
+	
 	XFORM xf{ 1,0,0,1,0,0 };
-	DO_IF_IS_VALID_OBJ(m_pPlayer) 
+	DO_IF_IS_VALID_OBJ(m_pPlayer)
 	{
-		XFORM xf = { 1,0,0,1,-m_pPlayer->GetX() + (WINCX>>1), -m_pPlayer->GetY() + (WINCY >> 1) };
-		SetWorldTransform(hBack, &xf);
+		if (m_pPlayer->GetX() < float(WINCX >> 1))
+		{
+			// x가 0이하로 넘어갈수 없게 막아버린것.
+			XFORM xf = { 1,0,0,1, 0.f, -m_pPlayer->GetY() + (WINCY >> 1) };
+			SetWorldTransform(hBack, &xf);
+		}
+		else
+		{
+			XFORM xf = { 1,0,0,1,-m_pPlayer->GetX() + (WINCX >> 1), -m_pPlayer->GetY() + (WINCY >> 1) };
+			SetWorldTransform(hBack, &xf);
+		}
 	}
-	//ClearWindowVer2();
+
 	CGroundManager::Get_Instance()->Render_GroundManager(hBack);
 	for (auto& pMonster : m_listMonsters) { pMonster->Render(hBack); }
 	for (auto& pBullet : m_listBullets) { pBullet->Render(hBack); }
 	for (auto& pMeteor : m_listMeteors) { pMeteor->Render(hBack); }
 	DO_IF_IS_VALID_OBJ(m_pPlayer) { m_pPlayer->Render(hBack); }
 	DO_IF_IS_VALID_OBJ(m_pBoss) { m_pBoss->Render(hBack); }
+	//백그라운드.
+	//GdiTransparentBlt(hBack, 0, 0, 9448, 2160, hMemDC, 0, 0, 9448, 2160, RGB(255, 255, 255));
+
 	XFORM xf2 = { 1,0,0,1,0, 0 };
 	SetWorldTransform(hBack, &xf2);
 	BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBack, 0, 0, SRCCOPY);
