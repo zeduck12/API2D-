@@ -20,7 +20,7 @@ public:
 
 public:
 	HDC GetDC() const { return m_hMemDC; }
-	bool LoadTexture(HINSTANCE _hInstance, HDC _hdc, const string& strKey,
+	bool LoadTexture(HINSTANCE _hInstance, const HDC& _hdc, const string& strKey,
 		const wchar_t* pFileName,
 		const string& strPathKey = TEXTURE_PATH);
 

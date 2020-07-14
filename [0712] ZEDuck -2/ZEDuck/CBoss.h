@@ -17,6 +17,7 @@ public:
     virtual void Release(void) override;
 
 public:
+    bool DetectPlayer(void);
     void ActiveGravity(void);
     bool CheckAttackRange(void);
     void CheckDirection(void);
@@ -27,7 +28,7 @@ public: // State
     void SetState(CBossState* _pState);
 
 public: // Get & Set
-    int GetJumpCount(void) const { return m_iJumpCount; }
+    int  GetJumpCount(void) const { return m_iJumpCount; }
     void SetJumpCount(int _iJumpCount) { m_iJumpCount = _iJumpCount; }
     bool GetIsJump(void) const { return m_bIsJump; }
     void SetIsJump(bool _bIsJump) { m_bIsJump = _bIsJump; }

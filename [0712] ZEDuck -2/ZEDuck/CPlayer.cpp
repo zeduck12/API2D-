@@ -50,15 +50,12 @@ int CPlayer::Update(float _fDeltaTime)
 
 void CPlayer::LateUpdate(void)
 {
-	// 나중에 몬스터가 던지는 투사체들 플레이어가 피격데미지 입는거등등 처리..
 }
 
 void CPlayer::Render(const HDC& _hdc)
 {
 	//CObj::Render(_hdc);
-	// 플레이어 기준으로 움직이게 구현하기.
-	Rectangle(_hdc, GetLeft() + (m_fX - oldPoint.x), GetTop() + (m_fY - oldPoint.y),
-		GetRight() + (m_fX - oldPoint.x), GetBottom() + (m_fY - oldPoint.y));
+	Rectangle(_hdc, GetLeft(), GetTop(), GetRight(), GetBottom());
 
 	if (eState == PLAYER::ATTACK)
 	{
@@ -67,7 +64,6 @@ void CPlayer::Render(const HDC& _hdc)
 		if (eDirection == PLAYER::RIGHT)
 			Rectangle(_hdc, GetX() + cfPlayerAttackRange, GetY() - 10.f, GetX(), GetY() + 10.f);
 
-		// 공격이 모션까지 끝나면 가만히 서있는 상태로.
 		eState = PLAYER::IDLE;
 	}
 }
@@ -144,7 +140,6 @@ void CPlayer::ResetPlayerVariable(void)
 	m_iJumpCount = 0;
 }
 
-// 플레이어 기준으로 일점범위 내에 몬스터가 있는지 체크하는 함수,
 bool CPlayer::CheckAttackRange(CObj* pObj)
 {
 	// 현재 왼쪽 오른쪽공격만 검사

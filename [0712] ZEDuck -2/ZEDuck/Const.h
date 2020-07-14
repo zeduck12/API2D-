@@ -24,6 +24,9 @@ const float cfBulletDegree = 90.f;
 const float cfSubBulletDistance = 20.f;
 const float cfSubBulletSpeed = 5.f;
 
+// 보스 몬스터 상수
+const float cfBossDetectRange = 200.f;
+
 // 몬스터 상수
 const size_t ciMonsterSize = 50;
 const float cfMonsterSpeed = 1.5f;

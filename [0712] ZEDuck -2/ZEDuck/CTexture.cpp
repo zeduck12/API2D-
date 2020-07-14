@@ -3,7 +3,7 @@
 #include "CPathManager.h"
 
 CTexture* CTexture::instance;
-bool CTexture::LoadTexture(HINSTANCE _hInstance, HDC _hdc, const string& strKey, const wchar_t* pFileName, const string& strPathKey)
+bool CTexture::LoadTexture(HINSTANCE _hInstance, const HDC& _hdc, const string& strKey, const wchar_t* pFileName, const string& strPathKey)
 {
 	// 메모리 DC를 만들어준다.
 	m_hMemDC = CreateCompatibleDC(_hdc);

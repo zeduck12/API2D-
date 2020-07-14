@@ -77,6 +77,24 @@ void CBoss::Release(void)
 {
 }
 
+bool CBoss::DetectPlayer(void)
+{
+	CObj* pPlayer = GetGameScene().GetPlayer();
+	DO_IF_IS_VALID_OBJ(pPlayer)
+	{
+		// 범위내에 
+		if (pPlayer->GetX() > this->GetX() - cfBossDetectRange &&
+			pPlayer->GetX() < this->GetX() + cfBossDetectRange &&
+			pPlayer->GetY() > this->GetY() - cfBossDetectRange &&
+			pPlayer->GetY() < this->GetY() + cfBossDetectRange)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void CBoss::ActiveGravity(void)
 {
 	m_fGravity += /*GRAVITY*/ 0.2f;

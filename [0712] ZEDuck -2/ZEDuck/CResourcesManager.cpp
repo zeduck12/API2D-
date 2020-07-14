@@ -3,11 +3,13 @@
 #include "CTexture.h"
 
 CResourcesManager* CResourcesManager::instance;
-bool CResourcesManager::Init(HINSTANCE _hInstance, HDC _hdc)
+bool CResourcesManager::Init(HINSTANCE _hInstance, const HDC& _hdc)
 {
 	m_hInst = _hInstance;
 	m_hDC = _hdc;
 
+	// 백버퍼를 불러온다.
+	m_pBackBuffer = LoadTexture("BackBuffer", L"BackBuffer.bmp");
 	return true;
 }
 
@@ -54,4 +56,11 @@ CResourcesManager::CResourcesManager()
 
 CResourcesManager::~CResourcesManager()
 {
+	// SAFE_RELEASE(m_pBackBuffer);
+	// Safe_Release_Map(m_mapTexture);
+	if (m_pBackBuffer)
+	{
+		delete m_pBackBuffer;
+		m_pBackBuffer = nullptr;
+	}
 }

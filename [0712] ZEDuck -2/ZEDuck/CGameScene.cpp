@@ -10,6 +10,10 @@
 #include "CTimeManager.h"
 #include "CPathManager.h"
 #include "CResourcesManager.h"
+#include "CTexture.h"
+#include "CBitmapManager.h"
+#include "CMyBitmap.h"
+
 
 CGameScene::CGameScene()
 {
@@ -22,14 +26,16 @@ CGameScene::~CGameScene()
 
 void CGameScene::Init(void)
 {
+	m_hDC = GetDC(g_hWND);
+	CBitmapManager::Get_Instance()->Insert_Texture_BmpMgr(L"Texture\\Background.bmp", L"BackGround");
+	CBitmapManager::Get_Instance()->Insert_Texture_BmpMgr(L"Texture\\BackBuffer.bmp", L"BackBuffer");
+	HDC hBack = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"BackBuffer");
+	SetGraphicsMode(hBack, GM_ADVANCED);
+	
 	oldTime = GetTickCount();
 	srand(static_cast<unsigned int>(time(nullptr)));	// 랜덤값을 생성하기 위한 시드 전달.
 
-	m_hDC = GetDC(g_hWND);
-	if (!CResourcesManager::Get_Instance()->Init(g_hInst, m_hDC))
-		return;
-	if (!CPathManager::Get_Instance()->Init())
-		return;
+
 	if (!CGroundManager::Get_Instance()->Ready_GroundManager(*this))
 		return;
 
@@ -95,23 +101,31 @@ void CGameScene::LateUpdate(void)
 
 void CGameScene::Render(void)
 {
-	// 플레이어가 중심에 있고 나머지들이 움직이도록
+	HDC hBack = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"BackBuffer");
+	if (nullptr == hBack)
+		return;
+	HDC hMemDC = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"BackGround");
+	if (nullptr == hMemDC)
+		return;
 
+	RECT rc{ 0,0, WINCX, WINCY };
+	FillRect(hBack, &rc, (HBRUSH)GetStockObject(WHITE_BRUSH));
+	XFORM xf{ 1,0,0,1,0,0 };
 	DO_IF_IS_VALID_OBJ(m_pPlayer) 
 	{
 		XFORM xf = { 1,0,0,1,-m_pPlayer->GetX() + (WINCX>>1), -m_pPlayer->GetY() + (WINCY >> 1) };
-		SetGraphicsMode(m_hDC, GM_ADVANCED);
-		SetWorldTransform(m_hDC, &xf);
+		SetWorldTransform(hBack, &xf);
 	}
-	ClearWindowVer2();
-	//ShowStageWindow();
-	
-	CGroundManager::Get_Instance()->Render_GroundManager(m_hDC);
-	for (auto& pMonster : m_listMonsters) { pMonster->Render(m_hDC); }
-	for (auto& pBullet : m_listBullets) { pBullet->Render(m_hDC); }
-	for (auto& pMeteor : m_listMeteors) { pMeteor->Render(m_hDC); }
-	DO_IF_IS_VALID_OBJ(m_pPlayer) { m_pPlayer->Render(m_hDC); }
-	DO_IF_IS_VALID_OBJ(m_pBoss) { m_pBoss->Render(m_hDC); }
+	//ClearWindowVer2();
+	CGroundManager::Get_Instance()->Render_GroundManager(hBack);
+	for (auto& pMonster : m_listMonsters) { pMonster->Render(hBack); }
+	for (auto& pBullet : m_listBullets) { pBullet->Render(hBack); }
+	for (auto& pMeteor : m_listMeteors) { pMeteor->Render(hBack); }
+	DO_IF_IS_VALID_OBJ(m_pPlayer) { m_pPlayer->Render(hBack); }
+	DO_IF_IS_VALID_OBJ(m_pBoss) { m_pBoss->Render(hBack); }
+	XFORM xf2 = { 1,0,0,1,0, 0 };
+	SetWorldTransform(hBack, &xf2);
+	BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBack, 0, 0, SRCCOPY);
 }
 
 void CGameScene::Release(void)

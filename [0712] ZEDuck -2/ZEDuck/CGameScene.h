@@ -1,7 +1,6 @@
 #pragma once
 
 class CObj;
-
 class CGameScene final
 {
 public:
@@ -30,6 +29,7 @@ private:
 	DWORD oldTime;
 	int m_iStartTime = 0;
 
+	HDC M_MemDc;
 	HDC m_hDC;
 	CObj* m_pPlayer;
 	CObj* m_pBoss;

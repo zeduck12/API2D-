@@ -43,9 +43,6 @@
     <Filter Include="소스 파일\02.Obj\025.Line">
       <UniqueIdentifier>{c5554d2c-fd6b-477a-aa92-ce62e753ab37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03.Manager">
-      <UniqueIdentifier>{d5c22cf6-88b0-403b-ba9e-9806f56eddff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Obj\026.Ground">
       <UniqueIdentifier>{45a4811a-fbd8-463c-ac28-9995d184d17e}</UniqueIdentifier>
     </Filter>
@@ -64,23 +61,32 @@
     <Filter Include="소스 파일\02.Obj\022.Bullet\Wave">
       <UniqueIdentifier>{af1bedec-d166-4942-8f49-f90181414c1b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03.Manager\01.GroundManager">
-      <UniqueIdentifier>{e41e2937-f987-4133-af60-6d5299a7e6b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\03.Manager\02.LineManager">
-      <UniqueIdentifier>{21f2a1f1-e465-45e0-8ec9-3adc76a6f8c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\03.Manager\03.TimeManager">
-      <UniqueIdentifier>{ef61af4e-9760-4bb6-a030-48678c1b7c64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\03.Manager\04.PathManager">
-      <UniqueIdentifier>{f67262f4-12f2-44ba-8e10-958f39cf40d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\03.Manager\05.ResourcesManager">
-      <UniqueIdentifier>{4d3d191a-932b-41e5-8912-76fbcc867ac5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Obj\027.Texture">
       <UniqueIdentifier>{d04488e2-4515-4727-bd78-3a358eb88df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.MyBitmap">
+      <UniqueIdentifier>{5ea21ba3-af88-407f-bf17-42ef18e99038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97.Manager">
+      <UniqueIdentifier>{d5c22cf6-88b0-403b-ba9e-9806f56eddff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97.Manager\01.GroundManager">
+      <UniqueIdentifier>{e41e2937-f987-4133-af60-6d5299a7e6b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97.Manager\02.LineManager">
+      <UniqueIdentifier>{21f2a1f1-e465-45e0-8ec9-3adc76a6f8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97.Manager\03.TimeManager">
+      <UniqueIdentifier>{ef61af4e-9760-4bb6-a030-48678c1b7c64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97.Manager\04.PathManager">
+      <UniqueIdentifier>{f67262f4-12f2-44ba-8e10-958f39cf40d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97.Manager\05.ResourcesManager">
+      <UniqueIdentifier>{4d3d191a-932b-41e5-8912-76fbcc867ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97.Manager\07.BitmapManager">
+      <UniqueIdentifier>{3c97d508-528b-4624-ae9a-716eee21eafe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -157,22 +163,28 @@
       <Filter>소스 파일\02.Obj\022.Bullet\Wave</Filter>
     </ClInclude>
     <ClInclude Include="CGroundManager.h">
-      <Filter>소스 파일\03.Manager\01.GroundManager</Filter>
+      <Filter>소스 파일\97.Manager\01.GroundManager</Filter>
     </ClInclude>
     <ClInclude Include="CLineManager.h">
-      <Filter>소스 파일\03.Manager\02.LineManager</Filter>
+      <Filter>소스 파일\97.Manager\02.LineManager</Filter>
     </ClInclude>
     <ClInclude Include="CTimeManager.h">
-      <Filter>소스 파일\03.Manager\03.TimeManager</Filter>
+      <Filter>소스 파일\97.Manager\03.TimeManager</Filter>
     </ClInclude>
     <ClInclude Include="CPathManager.h">
-      <Filter>소스 파일\03.Manager\04.PathManager</Filter>
+      <Filter>소스 파일\97.Manager\04.PathManager</Filter>
     </ClInclude>
     <ClInclude Include="CTexture.h">
       <Filter>소스 파일\02.Obj\027.Texture</Filter>
     </ClInclude>
     <ClInclude Include="CResourcesManager.h">
-      <Filter>소스 파일\03.Manager\05.ResourcesManager</Filter>
+      <Filter>소스 파일\97.Manager\05.ResourcesManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyBitmap.h">
+      <Filter>소스 파일\04.MyBitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CBitmapManager.h">
+      <Filter>소스 파일\97.Manager\07.BitmapManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,22 +237,28 @@
       <Filter>소스 파일\02.Obj\022.Bullet\Wave</Filter>
     </ClCompile>
     <ClCompile Include="CGroundManager.cpp">
-      <Filter>소스 파일\03.Manager\01.GroundManager</Filter>
+      <Filter>소스 파일\97.Manager\01.GroundManager</Filter>
     </ClCompile>
     <ClCompile Include="CLineManager.cpp">
-      <Filter>소스 파일\03.Manager\02.LineManager</Filter>
+      <Filter>소스 파일\97.Manager\02.LineManager</Filter>
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
-      <Filter>소스 파일\03.Manager\03.TimeManager</Filter>
+      <Filter>소스 파일\97.Manager\03.TimeManager</Filter>
     </ClCompile>
     <ClCompile Include="CPathManager.cpp">
-      <Filter>소스 파일\03.Manager\04.PathManager</Filter>
+      <Filter>소스 파일\97.Manager\04.PathManager</Filter>
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
       <Filter>소스 파일\02.Obj\027.Texture</Filter>
     </ClCompile>
     <ClCompile Include="CResourcesManager.cpp">
-      <Filter>소스 파일\03.Manager\05.ResourcesManager</Filter>
+      <Filter>소스 파일\97.Manager\05.ResourcesManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyBitmap.cpp">
+      <Filter>소스 파일\04.MyBitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="CBitmapManager.cpp">
+      <Filter>소스 파일\97.Manager\07.BitmapManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
