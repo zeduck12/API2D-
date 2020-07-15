@@ -47,6 +47,7 @@ private:
 private:
     POINT oldPoint;
     bool m_bIsPressDown = false;
+    bool m_bIsRunPress = false;
     PLAYER::E_STATE eState = PLAYER::IDLE; // 상태
     PLAYER::E_DIRECTION eDirection = PLAYER::DIRECTION_END; // 방향
 };

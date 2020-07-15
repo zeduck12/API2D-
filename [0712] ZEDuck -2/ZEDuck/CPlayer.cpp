@@ -7,11 +7,15 @@
 #include "CMonster.h"
 #include "CBitmapManager.h"
 #include "CAnimation.h"
+#include "CTimeManager.h"
+#include "CMyBitmap.h"
 
 CPlayer::CPlayer(CGameScene& _rGameScene)
 	:
 	CObj(_rGameScene, 0, 0, ciPlayerSize, ciPlayerSize, cfPlayerSpeed,0.f, Rectangle)
 {
+	m_iWidth = 256;
+	m_iHeight =128;
 	m_fJumpPower = 40.f;
 }
 
@@ -19,6 +23,8 @@ CPlayer::CPlayer(CGameScene& _rGameScene, float _fX, float _fY, size_t _iWidth, 
 	:
 	CObj(_rGameScene, _fX, _fY, _iWidth, _iHeight, _fSpeed, _fDegree, Rectangle)
 {
+	m_iWidth = 256;
+	m_iHeight = 128;
 	m_fJumpPower = 40.f;
 }
 
@@ -31,23 +37,30 @@ void CPlayer::Ready(void)
 {
 	CBitmapManager::Get_Instance()->Insert_Texture_BmpMgr(L"Texture\\Test.bmp", L"Player");
 	
-	//CAnimation* pAni = CreateAnimation("PlayerAnimation");
-	//AddAnimationClip("Idle", ANIMATION::ATLAS, ANIMATION::LOOP, 1.f, 2, 8 ,0,0, 2, 8 , 0.f, "PlayerIdle", L"Texture\\Test_Idle.bmp");
-	// if(pAni) {pAni->Release; pAni = nullptr;}
-	//// Render 부분에
-	//if (m_pAnimation)
-	//{
-	//	ANIMATION_CLIP* pClip = m_pAnimation->GetCurrentClip();
-	//}
-	//// update 부분에
-	//if (m_pAnimation)
-	//{
-	//	m_pAnimation->Update(/*deltaTime*/);
-	//}
+	CAnimation* pAni = CreateAnimation("PlayerAnimation");
+	AddAnimationClip("IdleLeft", ANIMATION::ATLAS, ANIMATION::LOOP, 0.8f, 1, 8 ,0,0, 1, 8 , 0.f, "PlayerIdle", L"Texture\\Test_Idle.bmp");
+	AddAnimationClip("IdleRight", ANIMATION::ATLAS, ANIMATION::LOOP, 0.8f, 1, 8, 1, 0, 1, 8, 0.f, "PlayerIdle", L"Texture\\Test_Idle.bmp");
+	AddAnimationClip("MoveLeft", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 1.4f, 1, 7, 0, 0, 1, 7, 0.f, "PlayerMove", L"Texture\\Test_Move.bmp");
+	AddAnimationClip("MoveRight", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 1.4f, 1, 7, 1, 0, 1, 7, 0.f, "PlayerMove", L"Texture\\Test_Move.bmp");
+	AddAnimationClip("JumpStartLeft", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.5f, 1, 5, 0, 0, 1, 5, 0.f, "PlayerJumpStart", L"Texture\\Test_Jump_01.bmp");
+	AddAnimationClip("JumpStartRight", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.5f, 1, 5, 1, 0, 1, 5, 0.f, "PlayerJumpStart", L"Texture\\Test_Jump_01.bmp");
+	AddAnimationClip("JumpReachHighLeft", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.3f, 1, 3, 0, 0, 1, 3, 0.f, "PlayerJumpReachHigh", L"Texture\\Test_Jump_02.bmp");
+	AddAnimationClip("JumpReachHighRight", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.3f, 1, 3, 1, 0, 1, 3, 0.f, "PlayerJumpReachHigh", L"Texture\\Test_Jump_02.bmp");
+	AddAnimationClip("JumpFallingLeft", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.3f, 1, 3, 0, 0, 1, 3, 0.f, "PlayerJumpFalling", L"Texture\\Test_Jump_03.bmp");
+	AddAnimationClip("JumpFallingRight", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.3f, 1, 3, 1, 0, 1, 3, 0.f, "PlayerJumpFalling", L"Texture\\Test_Jump_03.bmp");
+	AddAnimationClip("JumpLandingLeft", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.3f, 1, 3, 0, 0, 1, 3, 0.f, "PlayerJumpLanding", L"Texture\\Test_Jump_04.bmp");
+	AddAnimationClip("JumpLandingRigjt", ANIMATION::ATLAS, ANIMATION::ONCE_RETURN, 0.3f, 1, 3, 1, 0, 1, 3, 0.f, "PlayerJumpLanding", L"Texture\\Test_Jump_04.bmp");
+
+	if (pAni) { pAni = nullptr; }
 }
 
 int CPlayer::Update(float _fDeltaTime)
 {
+	// 항상 업데이트에서 플레이어 state를 idle로 초기화해준다,
+	eState = PLAYER::IDLE;
+	if (m_pAnimation)
+		m_pAnimation->Update(CTimeManager::Get_Instance()->GetElapsedTime());
+
 	// 이전 위치
 	oldPoint.x = GetX();
 	oldPoint.y = GetY();
@@ -66,22 +79,40 @@ int CPlayer::Update(float _fDeltaTime)
 
 void CPlayer::LateUpdate(void)
 {
+
 }
 
 void CPlayer::Render(const HDC& _hdc)
 {
-	//CObj::Render(_hdc);
-	HDC hMemDC = CBitmapManager::Get_Instance()->Find_Image_BmpMgr(L"Player");
-	if (nullptr == hMemDC)
-		return;
+	if (eDirection == PLAYER::LEFT && eState == PLAYER::IDLE)
+		m_pAnimation->ChangeClip("IdleLeft");
+	if (eDirection == PLAYER::RIGHT && eState == PLAYER::IDLE)
+		m_pAnimation->ChangeClip("IdleRight");
+	if (eDirection == PLAYER::LEFT && eState == PLAYER::RUN)
+		m_pAnimation->ChangeClip("MoveLeft");
+	if (eDirection == PLAYER::RIGHT && eState == PLAYER::RUN)
+		m_pAnimation->ChangeClip("MoveRight");
+	if (eDirection == PLAYER::LEFT && eState == PLAYER::JUMP)
+	{
+		
+	}
 
-	GdiTransparentBlt(_hdc, GetLeft(),GetTop(),
-		GetWidth(),GetHeight(),
-		hMemDC,
-		0, 0,
-		GetWidth(),GetHeight(),
+
+	POSITION tImagePos = {0,0};
+	if (m_pAnimation)
+	{
+		ANIMATION_CLIP* pClip = m_pAnimation->GetCurrentClip();
+
+		tImagePos.m_fX = pClip->iFrameX * m_iWidth;
+		tImagePos.m_fY = pClip->iFrameY * m_iHeight;
+	}
+
+	GdiTransparentBlt(_hdc, GetLeft(), GetTop(),
+		GetWidth(), GetHeight(),
+		m_pMyBitmap->Get_MemDC(),
+		tImagePos.m_fX, tImagePos.m_fY,
+		GetWidth(), GetHeight(),
 		RGB(255, 255, 255));
-	//Rectangle(_hdc, GetLeft(), GetTop(), GetRight(), GetBottom());
 
 	if (eState == PLAYER::ATTACK)
 	{
@@ -102,12 +133,14 @@ void CPlayer::InputKeyState()
 {
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
+		eState = PLAYER::RUN;
 		eDirection = PLAYER::LEFT;
 		m_fX -= m_fSpeed;
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
+		eState = PLAYER::RUN;
 		eDirection = PLAYER::RIGHT;
 		m_fX += m_fSpeed;
 	}
@@ -125,6 +158,7 @@ void CPlayer::InputKeyState()
 		if (m_bIsCollideCelling == true)
 			return;
 
+		eState = PLAYER::JUMP;
 		if (m_iJumpCount == 2)
 			return;
 		else if (m_iJumpCount == 1)
@@ -133,7 +167,6 @@ void CPlayer::InputKeyState()
 		}
 		else if (m_iJumpCount == 0)
 		{
-			eState = PLAYER::JUMP;
 			m_fJumpPower = 40.f;
 			m_fJumpAngle = 40.f;
 			m_fGravity = 0.f;
@@ -160,7 +193,7 @@ void CPlayer::ActiveGravity()
 
 void CPlayer::ResetPlayerVariable(void)
 {
-	eState = PLAYER::IDLE;
+	//eState = PLAYER::IDLE;
 	m_fGravity = 0.f;
 	m_fJumpPower = 0.f;
 	m_iJumpCount = 0;

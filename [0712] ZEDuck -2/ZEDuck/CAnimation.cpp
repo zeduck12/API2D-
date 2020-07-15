@@ -66,13 +66,9 @@ void CAnimation::ChangeClip(const string& _strClip)
 	m_pCurClip = FindClip(_strClip);
 
 	if (m_pCurClip->eType == ANIMATION::ATLAS)
-	{
-		//m_pOwner->SetTexture(m_pCurClip->vecTexture[0]);
-	}
+		m_pOwner->SetMyBitmap(m_pCurClip->vecTexture[0]);
 	else if (m_pCurClip->eType == ANIMATION::FRAME)
-	{
-		//m_pOwner->SetTexture(m_pCurClip->vecTexture[m_pCurClip->iFrameX]);
-	}
+		m_pOwner->SetMyBitmap(m_pCurClip->vecTexture[m_pCurClip->iFrameX]);
 
 }
 
@@ -108,6 +104,8 @@ void CAnimation::Update(float _fTime)
 			if (m_pCurClip->iFrameY - m_pCurClip->iStartY == m_pCurClip->iLengthY)
 			{
 				m_pCurClip->iFrameY = m_pCurClip->iStartY;
+
+				// 전부다 돌았다면 애니매이션을
 				switch (m_pCurClip->eOption)
 				{
 				case ANIMATION::ONCE_RETURN:
@@ -124,9 +122,6 @@ void CAnimation::Update(float _fTime)
 			}
 		}
 	}
-
-
-
 }
 
 CAnimation* CAnimation::Clone()
@@ -149,7 +144,7 @@ bool CAnimation::AddClip(const string& strName, ANIMATION::TYPE eType, ANIMATION
 	pClip->iLengthX = iLengthX;
 	pClip->iLengthY = iLengthY;
 	pClip->fOptionLimitTime = fOptionLimitTime;
-	pClip->fAnimationFrameTime = fAnimationLimitTime / (iLengthX * iLengthY);
+	pClip->fAnimationFrameTime = fAnimationLimitTime / (iLengthX * iLengthY); // 한사진당 머무르는 시간.
 	
 	CMyBitmap* pBitmap = new CMyBitmap;
 	pBitmap->LoadBmp(pFilePath);

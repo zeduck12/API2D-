@@ -91,6 +91,9 @@
     <Filter Include="소스 파일\05.Animation">
       <UniqueIdentifier>{824282d3-49a8-4b09-b805-2ce3b4a1c22d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.Scene">
+      <UniqueIdentifier>{36cbf58b-f349-4b43-9b07-b58648a7ceed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">

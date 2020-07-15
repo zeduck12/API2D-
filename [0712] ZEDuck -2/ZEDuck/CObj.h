@@ -1,6 +1,7 @@
 #pragma once
 #include "CTexture.h"
 
+class CMyBitmap;
 class CAnimation;
 class CGameScene;
 class CObj abstract
@@ -56,6 +57,7 @@ public:
 public:
 	void SetTexture(class CTexture* pTexture);
 	void SetTexture(const string& strkey, const wchar_t* pFileName = NULL, const string& strPathKey = TEXTURE_PATH);
+	void SetMyBitmap(CMyBitmap* _pMyBitmap) { m_pMyBitmap = _pMyBitmap; }
 	CAnimation* CreateAnimation(const string& _strTag);
 	bool AddAnimationClip(const string& strName, ANIMATION::TYPE eType,
 		ANIMATION::OPTION eOption, float fAnimationLimitTime,
@@ -73,6 +75,7 @@ protected:
 	size_t m_iHeight;
 	CTexture* m_pTexture = nullptr;
 	CAnimation* m_pAnimation = nullptr;
+	CMyBitmap* m_pMyBitmap = nullptr;
 	BOOL(__stdcall* m_pDrawFunc) (HDC hdc, int _left, int _right, int _top, int _bottom);
 
 private:

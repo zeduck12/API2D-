@@ -18,7 +18,6 @@ void CMyBitmap::LoadBmp(const TCHAR* pFilePath)
 	ReleaseDC(g_hWND, hDC);
 	// 여기는 물감 준비. 
 	m_hBitmap = (HBITMAP)LoadImage(nullptr, pFilePath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-
 	// 여기가 그림을 그림. 
 	m_OldBitmap = (HBITMAP)SelectObject(m_hMemDC, m_hBitmap);
 }
